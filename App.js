@@ -25,13 +25,11 @@ const AppContainer = createAppContainer(
   })
 );
 console.log("store", store.getState());
-export default class App extends React.Component {
-  render() {
-    return (
-      <Provider store={store}>
-        <StatusBar backgroundColor="#D3D3D3" barStyle="black" />
-        <AppContainer />
-      </Provider>
-    );
-  }
-}
+export default (App = () => {
+  return (
+    <Provider store={store}>
+      <StatusBar backgroundColor="#D3D3D3" barStyle="black" />
+      <AppContainer />
+    </Provider>
+  );
+});

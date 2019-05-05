@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware, combineReducers, compose } from "redux";
 import thunk from "redux-thunk";
-import logger from 'redux-logger'
+import logger from "redux-logger";
 
 import auth from "@tenderplan3/store/modules/auth";
 import keys from "@tenderplan3/store/modules/keys";
@@ -8,11 +8,8 @@ import marks from "@tenderplan3/store/modules/marks";
 import info from "@tenderplan3/store/modules/info";
 import clientMiddleware from "./clientMiddleware";
 
-import loginReducer from './reducers/loginReducer';
-
 const createReducer = (injectedReducers = {}) => {
   const combinedReducers = combineReducers({
-    loginReducer,
     ...injectedReducers
   });
 
@@ -20,11 +17,7 @@ const createReducer = (injectedReducers = {}) => {
 };
 
 export default function configureStore(initialState = {}, history, client) {
-  const middlewares = [
-    thunk,
-    logger,
-    clientMiddleware(client),
-  ];
+  const middlewares = [thunk, logger, clientMiddleware(client)];
 
   const enhancers = [applyMiddleware(...middlewares)];
 
@@ -53,7 +46,7 @@ export default function configureStore(initialState = {}, history, client) {
 
   // Extensions
   store.injectedReducers = initialReducers; // Reducer registry
-    console.log('STORE', store.getState())
+  console.log("STORE", store.getState());
   // Make reducers hot reloadable, see http://mxs.is/googmo
   /* istanbul ignore next */
   if (module.hot) {

@@ -21,13 +21,13 @@ import NoticesScreen from "./NoticesScreen";
 import ResponsibleScreen from "./ResponsibleScreen";
 import SettingsScreen from "./SettingsScreen";
 import SearchScreen from "./SearchScreen";
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import Ionicons from "react-native-vector-icons/Ionicons";
 import PropTypes from "prop-types";
-import uuid from 'uuid'
+import uuid from "uuid";
 
 const KeysScreen = props => {
   _keyItemPressed = title => {
-    console.log(title)
+    console.log(title);
     props.navigation.navigate("NoticesScreen", {
       itemTitle: title
     });
@@ -68,7 +68,7 @@ const KeysScreen = props => {
                 title={item.title}
                 number={23}
                 key={uuid()}
-                onPress={(title) => this._keyItemPressed(title)}
+                onPress={title => this._keyItemPressed(title)}
               />
             )}
           />
@@ -93,7 +93,7 @@ const KeysScreen = props => {
                 title={item.title}
                 number={23}
                 key={uuid()}
-                onPress={(title) => this._keyItemPressed(title)}
+                onPress={title => this._keyItemPressed(title)}
               />
             )}
             style={{ marginVertical: 17 }}
@@ -105,7 +105,7 @@ const KeysScreen = props => {
 };
 
 KeysScreen.propTypes = {
-  navigation: PropTypes.object,
+  navigation: PropTypes.object
 };
 
 KeysScreen.defaultProps = {
@@ -203,20 +203,19 @@ const KeysTabNavigator = createBottomTabNavigator(
         const { routeName } = navigation.state;
         let IconComponent = Ionicons;
         let iconName;
-        if (routeName === 'KeysScreen') {
-          iconName = 'md-key';
-        } else if (routeName === 'TagsScreen') {
+        if (routeName === "KeysScreen") {
+          iconName = "md-key";
+        } else if (routeName === "TagsScreen") {
           iconName = `ios-card`;
         }
 
         // You can return any component that you like here!
         return <IconComponent name={iconName} size={25} color={tintColor} />;
-      },
+      }
     }),
     navigationOptions: ({ navigation }) => ({
       header: null
-    }),
-    
+    })
   }
 );
 

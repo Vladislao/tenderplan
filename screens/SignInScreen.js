@@ -4,8 +4,8 @@ import Button from "../components/Button";
 import { Input } from "react-native-elements";
 import { connect } from "react-redux";
 import { fetchInfo, getUser } from "@tenderplan3/store/modules/info";
-import { authorizeToken } from "@tenderplan3/store/modules/auth";
-import axios from 'axios'; 
+import { login } from "@tenderplan3/store/modules/auth";
+import axios from "axios";
 
 class SignInScreen extends React.Component {
   state = {
@@ -16,10 +16,15 @@ class SignInScreen extends React.Component {
     header: null
   };
 
-  _signInAsync = async () => {
-    await AsyncStorage.setItem("userToken", "abc");
-    this.props.navigation.navigate("Keys");
-    // this.props.dispatch(authorizeToken());
+  _signInAsync = () => {
+    // await AsyncStorage.setItem("userToken", "abc");
+    // this.props.navigation.navigate("Keys");
+    this.props.dispatch(
+      login({
+        username: "doctorbrian97@gmail.com",
+        password: "4815162342"
+      })
+    );
   };
 
   render() {
