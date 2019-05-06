@@ -38,13 +38,9 @@ export default (ContentBlock = ({
       })}
       <FlatList
         data={listData}
+        keyExtractor={() => uuid()}
         renderItem={({ item }) => (
-          <ListItem
-            title={item.title}
-            number={23}
-            key={item.key}
-            onPress={onPress}
-          />
+          <ListItem title={item.title} number={23} onPress={onPress} />
         )}
         style={styles.flatList}
       />

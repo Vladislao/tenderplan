@@ -62,12 +62,12 @@ const KeysScreen = props => {
               { title: "Оргтехника", key: "wqdwq213" },
               { title: "Мебель офисная", key: "asdsa214" }
             ]}
+            keyExtractor={() => uuid()}
             renderItem={({ item }) => (
               <KeyListItem
                 keyContentBlock
                 title={item.title}
                 number={23}
-                key={uuid()}
                 onPress={title => this._keyItemPressed(title)}
               />
             )}
@@ -88,11 +88,11 @@ const KeysScreen = props => {
               { title: "Документ отправлен", key: "asdsa12321214dw21" },
               { title: "Юристу", key: "1244" }
             ]}
+            keyExtractor={() => uuid()}
             renderItem={({ item }) => (
               <KeyListItem
                 title={item.title}
                 number={23}
-                key={uuid()}
                 onPress={title => this._keyItemPressed(title)}
               />
             )}

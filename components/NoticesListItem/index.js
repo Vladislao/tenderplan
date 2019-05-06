@@ -1,12 +1,12 @@
 import React from "react";
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import PropTypes from "prop-types";
-export default (NoticesListItem = item => {
-  console.log(item)
+export default (NoticesListItem = ({ item, onPress }) => {
+  console.log(item);
   return (
     <TouchableOpacity
       style={styles.noticesListItem}
-      onPress={() => onPress(title)}
+      onPress={() => onPress(item.title)}
     >
       <Text>{item.title}</Text>
       <View style={styles.options}>
@@ -32,15 +32,15 @@ NoticesListItem.defaultProps = {
 const styles = StyleSheet.create({
   noticesListItem: {
     height: 130,
-    display: 'flex',
-    justifyContent:'space-around',
+    display: "flex",
+    justifyContent: "space-around",
     paddingHorizontal: 20,
     borderBottomWidth: 1,
-    borderBottomColor: '#C8D0D9'
+    borderBottomColor: "#C8D0D9"
   },
   options: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent:'space-around',
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-around"
   }
 });

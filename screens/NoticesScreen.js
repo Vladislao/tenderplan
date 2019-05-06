@@ -10,9 +10,9 @@ import {
 } from "react-native";
 import { createStackNavigator } from "react-navigation";
 import NoticeScreen from "./NoticeScreen";
-import NoticesListItem from '../components/NoticesListItem'
+import NoticesListItem from "../components/NoticesListItem";
 import PropTypes from "prop-types";
-import uuid from 'uuid'
+import uuid from "uuid";
 
 const NoticesScreen = props => {
   _signOutAsync = async () => {
@@ -61,13 +61,19 @@ const NoticesScreen = props => {
       activeTo: "Осталось 7 дней",
       price: "12 123 321",
       important: true
-    },
+    }
   ];
   return (
     <View style={styles.container}>
       <FlatList
         data={noticesList}
-        renderItem={({ item }) => <NoticesListItem {...item}/>}
+        keyExtractor={() => uuid()}
+        renderItem={({ item }) => (
+          <NoticesListItem
+            item={item}
+            onPress={title => _signOutAsync(title)}
+          />
+        )}
       />
     </View>
   );

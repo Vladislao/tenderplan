@@ -16,15 +16,15 @@ class SignInScreen extends React.Component {
     header: null
   };
 
-  _signInAsync = () => {
-    // await AsyncStorage.setItem("userToken", "abc");
-    // this.props.navigation.navigate("Keys");
-    this.props.dispatch(
-      login({
-        username: "doctorbrian97@gmail.com",
-        password: "4815162342"
-      })
-    );
+  _signInAsync = async () => {
+    await AsyncStorage.setItem("userToken", "abc");
+    this.props.navigation.navigate("Keys");
+    // this.props.dispatch(
+    //   login({
+    //     username: "doctorbrian97@gmail.com",
+    //     password: "4815162342"
+    //   })
+    // );
   };
 
   render() {

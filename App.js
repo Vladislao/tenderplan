@@ -25,6 +25,7 @@ const AppContainer = createAppContainer(
   })
 );
 console.log("store", store.getState());
+console.log("client", client);
 export default (App = () => {
   return (
     <Provider store={store}>
