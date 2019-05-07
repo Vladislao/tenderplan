@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware, combineReducers, compose } from "redux";
 import thunk from "redux-thunk";
-import logger from "redux-logger";
+import { createLogger } from "redux-logger";
 
 import auth from "@tenderplan3/store/modules/auth";
 import keys from "@tenderplan3/store/modules/keys";
@@ -16,19 +16,28 @@ const createReducer = (injectedReducers = {}) => {
   return combinedReducers;
 };
 
-export default function configureStore(initialState = {}, history, client) {
-  const middlewares = [thunk, logger, clientMiddleware(client)];
+export default function configureStore(initialState = {}, client) {
+  const middlewares = [
+    thunk,
+    clientMiddleware(client),
+    createLogger({
+      titleFormatter: (action, time, took) =>
+        `action @ ${action.type || action.types[0]} ${time} (in ${took.toFixed(
+          2
+        )} ms)`
+    })
+  ];
 
   const enhancers = [applyMiddleware(...middlewares)];
 
   // If Redux DevTools Extension is installed use it, otherwise use Redux compose
   /* eslint-disable no-underscore-dangle, indent */
-  const composeEnhancers =
-    process.env.NODE_ENV !== "production" &&
-    typeof window === "object" &&
-    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-      ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
-      : compose;
+  // const composeEnhancers =
+  //   process.env.NODE_ENV !== "production" &&
+  //   typeof window === "object" &&
+  //   window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+  //     ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
+  //     : compose;
   /* eslint-enable */
 
   const initialReducers = {
@@ -41,7 +50,8 @@ export default function configureStore(initialState = {}, history, client) {
   const store = createStore(
     createReducer(initialReducers),
     initialState,
-    composeEnhancers(...enhancers)
+    compose(...enhancers)
+    // composeEnhancers(...enhancers)
   );
 
   // Extensions

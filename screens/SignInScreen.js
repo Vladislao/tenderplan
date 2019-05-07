@@ -19,12 +19,23 @@ class SignInScreen extends React.Component {
   _signInAsync = async () => {
     await AsyncStorage.setItem("userToken", "abc");
     this.props.navigation.navigate("Keys");
-    // this.props.dispatch(
-    //   login({
-    //     username: "doctorbrian97@gmail.com",
-    //     password: "4815162342"
-    //   })
-    // );
+
+    this.props
+      .login({
+        username: "jajawiyasa@flurred.com",
+        password: "jajawiyasa@flurred.com"
+      })
+      .then(
+        res => {
+          console.log(res);
+        },
+        err => {
+          console.warn(err);
+        }
+      )
+      .catch(err => {
+        console.error(err);
+      });
   };
 
   render() {
@@ -95,7 +106,12 @@ const mapStateToProps = state => ({
   user: getUser(state.info)
 });
 
+const mapActionCreators = {
+  fetchInfo,
+  login
+};
+
 export default connect(
   mapStateToProps,
-  dispatch => ({ dispatch })
+  mapActionCreators
 )(SignInScreen);

@@ -14,7 +14,7 @@ import { StatusBar } from "react-native";
 
 const initialState = {};
 const client = new ApiClient();
-const store = configureStore(initialState, {}, client);
+const store = configureStore(initialState, client);
 const AuthStack = createStackNavigator({ SignIn: SignInScreen });
 
 const AppContainer = createAppContainer(
