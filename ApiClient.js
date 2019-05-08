@@ -19,7 +19,7 @@ function formatUrl(path) {
       ? apiSegment + adjustedPath
       : adjustedPath;
 
-  return `https://tenderplan.ru${fullPath}`;
+  return `https://dev.tenderplan3.lmx.su${fullPath}`;
 }
 
 export default class ApiClient {

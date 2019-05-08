@@ -22,8 +22,8 @@ class SignInScreen extends React.Component {
 
     this.props
       .login({
-        username: "jajawiyasa@flurred.com",
-        password: "jajawiyasa@flurred.com"
+        username: "doctorbrian97@gmail.com",
+        password: "4815162342"
       })
       .then(
         res => {
